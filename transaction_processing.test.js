@@ -18,5 +18,17 @@ describe("getBalanceByCategoryInPeriod()", function() {
     assert(runForZeroTransactions === 0, "with 0 transactions the sum is 0")
   })
 
+  test("returns 3000 when 3000 deposits made within date range", () => {
+
+    const runForTransactions = getBalanceByCategoryInPeriod(
+      transactions,
+      "salary",
+      new Date("2019-10-27T07:30:15.314Z"),
+      new Date("2019-10-28T05:00:18.903Z")
+    )
+
+    assert(runForTransactions === 30000, "3000 salary when salary input is 3000")
+  })
+
   // add your tests here
 })
