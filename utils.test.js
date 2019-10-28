@@ -1,6 +1,6 @@
 const assert = require('assert')
 const utils = require('./utils')
-const { test, describe } = require('./test')
+const { test, describe } = require('./test_runner')
 
 
 describe("randomDate: test capability of random date generator:", () => {
