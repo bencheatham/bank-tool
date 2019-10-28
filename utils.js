@@ -37,11 +37,14 @@ function buildTestDateList(quantity, start, end) {
 
   const leftOutOfBoundsStart = new Date(new Date(start).setUTCHours(start.getUTCHours() - 48))
   const leftOutOfBoundsDates = buildRandomDateList(quater, leftOutOfBoundsStart, start)
+                                 .sort((a, b) => new Date(a) - new Date(b))
 
   const rightOutOfBoundsStart = new Date(new Date(end).setUTCHours(start.getUTCHours() + 48))
   const rightOutOfBoundsDates = buildRandomDateList(quater, end, rightOutOfBoundsStart)
+                                  .sort((a, b) => new Date(a) - new Date(b))
 
   const inboundDates = buildRandomDateList(half, start, end)
+                         .sort((a, b) => new Date(a) - new Date(b))
 
   return {
     leftOutOfBoundsDates,

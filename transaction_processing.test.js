@@ -53,4 +53,16 @@ describe("getBalanceByCategoryInPeriod()", function() {
 
     assert(runForTransactions === 20000, "20000 salary when grocery input is 20000")
   })
+
+  test("returns 0 where there are no transactions for a category", () => {
+
+    const runForTransactions = getBalanceByCategoryInPeriod(
+      transactions,
+      "entertainment",
+      new Date("2019-10-27T09:30:15.314Z"),
+      new Date("2019-10-28T02:00:18.903Z")
+    )
+
+    assert(runForTransactions === 0, "0 when the category is entertainment")
+  })
 })

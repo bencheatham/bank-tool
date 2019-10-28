@@ -13,7 +13,7 @@ describe("randomDate: test capability of random date generator:", () => {
   })
 
   test("The date is between the start and end date", () => {
-    assert(date < start && date < end, "the date value is a date")
+    assert(date > start && date < end, "the date value is a date")
   })
 })
 
@@ -27,7 +27,7 @@ describe("buildRandomDateList", () => {
   })
 
   test("All of the dates are between the start and end dates", () => {
-    const datesOutOfRange = dates.filter(date => date > start || date > end)
+    const datesOutOfRange = dates.filter(date => date < start || date > end)
     assert(datesOutOfRange.length === 0, "there are no dates outside of the provided date range")
   })
 })
@@ -50,6 +50,19 @@ describe("buildTestDateList", () => {
     test("returns 7 in bounds dates when quantity is 15", () => {
       assert(dates.inboundDates.length === 7, "there are 7 in bounds dates")
     })
+
+    test("the returned dates are sorted from earliest to latest", () => {
+      const mergedDates = [...dates.leftOutOfBoundsDates, ...dates.inboundDates, ...dates.rightOutOfBoundsDates]
+      let isSorted = true
+      for (let i = 0; i < mergedDates.length; i++) {
+        if (mergedDates[i + 1]) {
+          if (mergedDates[i] > mergedDates[i + 1]) {
+            isSorted = false
+          }
+        }
+      }
+      assert(isSorted, "the dates list is sorted")
+    })
   })
 
   describe("buildTestDateList => quantity is 40", () => {
@@ -67,6 +80,18 @@ describe("buildTestDateList", () => {
 
     test("returns 20 in bounds dates when quantity is 40", () => {
       assert(dates.inboundDates.length === 20, "there are 20 in bounds dates")
+    })
+    test("the returned dates are sorted from earliest to latest", () => {
+      const mergedDates = [...dates.leftOutOfBoundsDates, ...dates.inboundDates, ...dates.rightOutOfBoundsDates]
+      let isSorted = true
+      for (let i = 0; i < mergedDates.length; i++) {
+        if (mergedDates[i + 1]) {
+          if (mergedDates[i] > mergedDates[i + 1]) {
+            isSorted = false
+          }
+        }
+      }
+      assert(isSorted, "the dates list is sorted")
     })
   })
 
