@@ -8,9 +8,7 @@ module.exports = function getBalanceByCategoryInPeriod (transactions = [], categ
       && transaction.category === category
     )
     .reduce((accum, transaction) => {
-      console.log('transaction', transaction)
-      accum += transaction.amount
-      return accum
+      return accum + transaction.amount
     }, 0)
 
 }

@@ -30,5 +30,27 @@ describe("getBalanceByCategoryInPeriod()", function() {
     assert(runForTransactions === 30000, "3000 salary when salary input is 3000")
   })
 
-  // add your tests here
+  test("returns -510.75 when -510.75 expenses were incurred within date range", () => {
+
+    const runForTransactions = getBalanceByCategoryInPeriod(
+      transactions,
+      "groceries",
+      new Date("2019-10-27T07:30:15.314Z"),
+      new Date("2019-10-28T05:00:18.903Z")
+    )
+
+    assert(runForTransactions === -510.75, "-510.75 salary when grocery input is -510.75")
+  })
+
+  test("includes the start date transactions but not the end date", () => {
+
+    const runForTransactions = getBalanceByCategoryInPeriod(
+      transactions,
+      "salary",
+      new Date("2019-10-27T09:30:15.314Z"),
+      new Date("2019-10-28T02:00:18.903Z")
+    )
+
+    assert(runForTransactions === 20000, "20000 salary when grocery input is 20000")
+  })
 })
