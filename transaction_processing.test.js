@@ -1,7 +1,7 @@
 const assert = require('assert')
 
 const { test, describe } = require('./test_runner')
-const {unsorted_transactions, sorted_transactions} = require('./test_cases')
+const {unsorted_transactions, sorted_transactions} = require('./test_cases')()
 const getBalanceByCategoryInPeriod = require('./transaction_processing')
 
 
